@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{margin:0;padding: 0;}
+		.head{width: 100%;height: 40vh;overflow: hidden;}
+		.head img{width: 100%;height: 100%;/*cursor: url(cursor.png),auto;*/}
+		.body{width: 100%;}
+		.main{width: 70%;margin-left: 15%;background-color: #e1f7fa;padding: 30px;box-sizing: border-box;/*cursor: url(cursor.png),auto;*/}
+        .main p{margin-bottom: 20px;}
+        .main a{text-decoration:none;}
+        .main img{margin-bottom: 20px;}
+		.title{font-size: 24px;border-width: bold;margin-bottom: 30px;font-weight: 500;}
+        .info{font-size: 18px;color: gray;font-size: 16px;}
+		.star {
+			width:30px;
+			height:30px;
+			position:fixed;
+			background-size:100%;
+			background-image:url(http://ouawl2p42.bkt.clouddn.com/star.png)
+		}
+        td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+        span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+        pre { line-height: 125%;overflow: auto;margin-bottom: 20px; }
+        body .hll { background-color: #ffffcc }
+        body  { background: #f8f8f8; }
+        body .c { color: #408080; font-style: italic } /* Comment */
+        body .err { border: 1px solid #FF0000 } /* Error */
+        body .k { color: #008000; font-weight: bold } /* Keyword */
+        body .o { color: #666666 } /* Operator */
+        body .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+        body .cp { color: #BC7A00 } /* Comment.Preproc */
+        body .c1 { color: #408080; font-style: italic } /* Comment.Single */
+        body .cs { color: #408080; font-style: italic } /* Comment.Special */
+        body .gd { color: #A00000 } /* Generic.Deleted */
+        body .ge { font-style: italic } /* Generic.Emph */
+        body .gr { color: #FF0000 } /* Generic.Error */
+        body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+        body .gi { color: #00A000 } /* Generic.Inserted */
+        body .go { color: #888888 } /* Generic.Output */
+        body .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+        body .gs { font-weight: bold } /* Generic.Strong */
+        body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+        body .gt { color: #0044DD } /* Generic.Traceback */
+        body .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+        body .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+        body .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+        body .kp { color: #008000 } /* Keyword.Pseudo */
+        body .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+        body .kt { color: #B00040 } /* Keyword.Type */
+        body .m { color: #666666 } /* Literal.Number */
+        body .s { color: #BA2121 } /* Literal.String */
+        body .na { color: #7D9029 } /* Name.Attribute */
+        body .nb { color: #008000 } /* Name.Builtin */
+        body .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+        body .no { color: #880000 } /* Name.Constant */
+        body .nd { color: #AA22FF } /* Name.Decorator */
+        body .ni { color: #999999; font-weight: bold } /* Name.Entity */
+        body .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+        body .nf { color: #0000FF } /* Name.Function */
+        body .nl { color: #A0A000 } /* Name.Label */
+        body .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+        body .nt { color: #008000; font-weight: bold } /* Name.Tag */
+        body .nv { color: #19177C } /* Name.Variable */
+        body .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+        body .w { color: #bbbbbb } /* Text.Whitespace */
+        body .mf { color: #666666 } /* Literal.Number.Float */
+        body .mh { color: #666666 } /* Literal.Number.Hex */
+        body .mi { color: #666666 } /* Literal.Number.Integer */
+        body .mo { color: #666666 } /* Literal.Number.Oct */
+        body .sb { color: #BA2121 } /* Literal.String.Backtick */
+        body .sc { color: #BA2121 } /* Literal.String.Char */
+        body .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+        body .s2 { color: #BA2121 } /* Literal.String.Double */
+        body .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+        body .sh { color: #BA2121 } /* Literal.String.Heredoc */
+        body .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+        body .sx { color: #008000 } /* Literal.String.Other */
+        body .sr { color: #BB6688 } /* Literal.String.Regex */
+        body .s1 { color: #BA2121 } /* Literal.String.Single */
+        body .ss { color: #19177C } /* Literal.String.Symbol */
+        body .bp { color: #008000 } /* Name.Builtin.Pseudo */
+        body .vc { color: #19177C } /* Name.Variable.Class */
+        body .vg { color: #19177C } /* Name.Variable.Global */
+        body .vi { color: #19177C } /* Name.Variable.Instance */
+        body .il { color: #666666 } /* Literal.Number.Integer.Long */
+	</style>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div class="head" id="head">
+	<img src="http://ouawl2p42.bkt.clouddn.com/star.jpg">
+</div>
+<div class="body">
+	<div class="main">
+		<p class="title">进度环的一种简单实现</p>
+        <p class="info">作者：FreeFaller | 2016-05-23</p>
+		<p>在网页中我们常常会看到一个酱紫的圆环来表示一个事物的进展情况，或者像是360给电脑体检打分时候用进度环来显示健康状态。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/1.jpg">
+        <p>因为用进度环在页面上展示能给用户一个最直观的信息，相信大家也不是第一次见到。那么我们应该如何来实现这个进度环呢？</p>
+        <p>想实现一个进度环，可不是两个圆环简单得叠加，但是也只复杂那么一点点，因为我这里用了三个圆环。</p>
+        <p>最初三个圆环是这样子（立体视角)</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/2.jpg">
+        <p>接下来，我们将上面的两个灰色圆环进行“裁剪”，使得它们成为两个特殊的半圆。之所以说“特殊”，是因为我们要将圆的一半部分变为透明。我们可以把透明区域理解为盖着一个隐身斗篷，凡是进入这个区域里面的部分都将变得透明。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/3.jpg">
+        <p>CSS中能够实现这种神奇功能的方法是”clip“。clip能制造一块隐形斗篷，使原本在这个区域内的部分消失，并使得接下来进入这个区域内的圆也隐藏。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/4.jpg">
+        <p>于是，最初的效果便是这样：</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/5.jpg">
+        <p>在这里我们把第一个圆的右侧作为隐藏区域，第二个圆的左侧作为隐藏区域。接下来我们要做的事情便是通过旋转，让最底下的圆逐渐显现出来，实现进度的效果。</p>
+        <p>首先，我们转动中间的半圆，使其顺时针偏过一定角度。这样一来，这个半圆会有一部分进入左侧隐藏区域，同时将上面偏出一部分空白区域，由于第一个圆的右侧是透明区域，所以在偏出的部分我们能够直接看到最底下那个蓝色环，效果如图：</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/6.jpg">
+        <p>之后，第二个圆环继续偏转，当完全进入隐藏区域部分时刚好便是50%的效果</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/7.jpg">
+        <p>至此，革命大业顺利进行了一半，接下来可能不需要说，大家也能想到该如何让剩下的蓝色圆环显示出来了吧，那就是顺时针转动最上层的圆环。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/8.jpg">
+        <p>最后，一鼓作气，我们把顶层圆环旋转180°，圆环完全进入隐藏区域，底部的蓝色环至此也完全显示了出来。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/9.jpg">
+        <p>进度条的显示原理至此已经基本明了，接下来便是将中间的数字与转动的度数对应起来。这里要注意的是把数字乘以3.6求得圆环应偏转的度数（道理很简单，进度是0—100，度数是0—360）。</p>
+        <p>Talk is cheap，此处附上圆环代码（为简化代码，使用了jquery）</p>
+        <p>html&CSS:</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #BC7A00">&lt;!Doctype html&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;html&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">charset =</span> </span><span style="color: #BA2121">&quot;utf-8&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;head&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;script </span><span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;js/jquery-1.11.3.js&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text/javascript&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/script&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;script </span><span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;js/progress.js&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text/javascript&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/script&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;style </span><span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text/css&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+    <span style="color: #0000FF; font-weight: bold">.circle</span> {<span style="color: #008000; font-weight: bold">width</span><span style="color: #666666">:</span> <span style="color: #666666">200px</span>;<span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:</span> <span style="color: #666666">200px</span>;<span style="color: #008000; font-weight: bold">position</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">absolute</span>;<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">50%</span>;<span style="color: #008000; font-weight: bold">background</span><span style="color: #666666">:</span> <span style="color: #666666">#00b0f0</span>;}
+    <span style="color: #0000FF; font-weight: bold">.pie_left</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">.pie_right</span> {<span style="color: #008000; font-weight: bold">width</span><span style="color: #666666">:</span> <span style="color: #666666">200px</span>;<span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:</span> <span style="color: #666666">200px</span>;<span style="color: #008000; font-weight: bold">position</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">absolute</span>;<span style="color: #008000; font-weight: bold">top</span><span style="color: #666666">:</span> <span style="color: #666666">0</span>;<span style="color: #008000; font-weight: bold">left</span><span style="color: #666666">:</span> <span style="color: #666666">0</span>;}
+    <span style="color: #0000FF; font-weight: bold">.left</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">.right</span> {<span style="color: #008000; font-weight: bold">display</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">block</span>;<span style="color: #008000; font-weight: bold">width</span><span style="color: #666666">:200px</span>; <span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:200px</span>;<span style="color: #008000; font-weight: bold">background</span><span style="color: #666666">:#bfbfbf</span>;<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">50%</span>;<span style="color: #008000; font-weight: bold">position</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">absolute</span>;<span style="color: #008000; font-weight: bold">top</span><span style="color: #666666">:</span> <span style="color: #666666">0</span>;<span style="color: #008000; font-weight: bold">left</span><span style="color: #666666">:</span> <span style="color: #666666">0</span>;}
+    <span style="color: #0000FF; font-weight: bold">.pie_right</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">.right</span> {<span style="color: #008000; font-weight: bold">clip</span><span style="color: #666666">:</span>rect(<span style="color: #666666">0,</span><span style="color: #008000; font-weight: bold">auto</span><span style="color: #666666">,</span><span style="color: #008000; font-weight: bold">auto</span><span style="color: #666666">,100px</span>);}
+    <span style="color: #0000FF; font-weight: bold">.pie_left</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">.left</span> {<span style="color: #008000; font-weight: bold">clip</span><span style="color: #666666">:</span>rect(<span style="color: #666666">0,100px,</span><span style="color: #008000; font-weight: bold">auto</span><span style="color: #666666">,0</span>);}
+    <span style="color: #0000FF; font-weight: bold">.mask</span> {<span style="color: #008000; font-weight: bold">width</span><span style="color: #666666">:</span> <span style="color: #666666">150px</span>;<span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:</span> <span style="color: #666666">150px</span>;<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">50%</span>;<span style="color: #008000; font-weight: bold">left</span><span style="color: #666666">:</span> <span style="color: #666666">25px</span>;<span style="color: #008000; font-weight: bold">top</span><span style="color: #666666">:</span> <span style="color: #666666">25px</span>;<span style="color: #008000; font-weight: bold">background</span><span style="color: #666666">:</span> <span style="color: #666666">#FFF</span>;<span style="color: #008000; font-weight: bold">position</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">absolute</span>;<span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">center</span>;<span style="color: #008000; font-weight: bold">line-height</span><span style="color: #666666">:</span> <span style="color: #666666">150px</span>;<span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">20px</span>;<span style="color: #008000; font-weight: bold">font-weight</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">bold</span>;}
+    <span style="color: #008000; font-weight: bold">&lt;/style&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;/head&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;body&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;circle&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;pie_left&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;left&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/div&gt;&lt;/div&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;pie_right&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;right&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/div&gt;&lt;/div&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;mask&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;span&gt;</span>0<span style="color: #008000; font-weight: bold">&lt;/span&gt;</span>%<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;/body&gt;</span>
+    <span style="color: #008000; font-weight: bold">&lt;/html&gt;</span>
+    </pre></div>
+    <p>JS：</p>
+    <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    $(<span style="color: #008000; font-weight: bold">function</span>() {
+        $(<span style="color: #BA2121">&#39;.circle&#39;</span>).each(<span style="color: #008000; font-weight: bold">function</span>(index, el) {
+            <span style="color: #008000; font-weight: bold">var</span> num <span style="color: #666666">=</span> $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;span&#39;</span>).text() <span style="color: #666666">*</span> <span style="color: #666666">3.6</span>;
+            <span style="color: #008000; font-weight: bold">if</span> (num<span style="color: #666666">&lt;=180</span>) {
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.right&#39;</span>).css(<span style="color: #BA2121">&#39;transform&#39;</span>, <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>);
+            } <span style="color: #008000; font-weight: bold">else</span> {
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.right&#39;</span>).css(<span style="color: #BA2121">&#39;transform&#39;</span>, <span style="color: #BA2121">&quot;rotate(180deg)&quot;</span>);
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.left&#39;</span>).css(<span style="color: #BA2121">&#39;transform&#39;</span>, <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>);
+            };
+        });
+    });
+    </pre></div>
+        <p>以上的代码已经可以满足圆环的需求，当然如果你想亲眼看到自己的圆环”动起来“，也很简单，只要用setInterval（）使得数字每隔一段时间加1，就会”联动“圆环发生变化。将以下代码替换上面的JS部分即可见证~</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">function</span> showCircle(){
+        $(<span style="color: #BA2121">&#39;.circle&#39;</span>).each(<span style="color: #008000; font-weight: bold">function</span>(index, el) {
+            number <span style="color: #666666">=</span> $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;span&#39;</span>).text();
+            <span style="color: #008000; font-weight: bold">var</span> num <span style="color: #666666">=</span> number <span style="color: #666666">*</span> <span style="color: #666666">3.6</span>;
+            <span style="color: #008000; font-weight: bold">if</span> (num<span style="color: #666666">&lt;=180</span>) {
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.right&#39;</span>).css({
+                    <span style="color: #BA2121">&#39;transform&#39;</span><span style="color: #666666">:</span><span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-o-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-ms-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-moz-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-webkit-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> num <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-o-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-o-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-ms-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-ms-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-moz-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-moz-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-webkit-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-webkit-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>
+                });
+            } <span style="color: #008000; font-weight: bold">else</span> {
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.right&#39;</span>).css(<span style="color: #BA2121">&#39;transform&#39;</span>, <span style="color: #BA2121">&quot;rotate(180deg)&quot;</span>);
+                $(<span style="color: #008000; font-weight: bold">this</span>).find(<span style="color: #BA2121">&#39;.left&#39;</span>).css({
+                    <span style="color: #BA2121">&#39;transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-o-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-ms-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-moz-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;-webkit-transform&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&quot;rotate(&quot;</span> <span style="color: #666666">+</span> (num <span style="color: #666666">-</span> <span style="color: #666666">180</span>) <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;deg)&quot;</span>,
+                    <span style="color: #BA2121">&#39;transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-o-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-o-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-ms-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-ms-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-moz-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-moz-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>,
+                    <span style="color: #BA2121">&#39;-webkit-transition&#39;</span><span style="color: #666666">:</span> <span style="color: #BA2121">&#39;-webkit-transform &#39;</span> <span style="color: #666666">+</span> <span style="color: #666666">100</span> <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;ms linear&#39;</span>
+                });
+            };
+        });
+    }
+    $(<span style="color: #008000; font-weight: bold">function</span>() {
+        showCircle();
+    });
+    <span style="color: #008000; font-weight: bold">function</span> incrementNumber(){
+        number <span style="color: #666666">++</span>;
+        $(<span style="color: #BA2121">&#39;.mask&#39;</span>).find(<span style="color: #BA2121">&#39;span&#39;</span>).text(number);
+        showCircle();
+        <span style="color: #008000; font-weight: bold">if</span> (number <span style="color: #666666">==</span> <span style="color: #666666">100</span>) {
+            clearInterval(intervalId);
+            <span style="color: #408080; font-style: italic">// alert(&quot;《JS高程》学完啦！&quot;);</span>
+        };
+    }
+    intervalId <span style="color: #666666">=</span> setInterval(incrementNumber,<span style="color: #666666">100</span>);
+        </pre></div>
+        <p>以上便是我对进度环实现的一种方法，当然也还有很多其他方法（超长雪碧图，Canvas等等），多种方法的实现也正是前端的魅力所在。前端新人，见解尚浅，欢迎各位大神拍砖指教~</p>
+        <p>
+            参考资料：<br>
+            1.<a target="_blank" href="http://www.zhangxinxu.com/wordpress/2014/04/css3-pie-loading-waiting-animation/">http://www.zhangxinxu.com/wordpress/2014/04/css3-pie-loading-waiting-animation/</a><br>
+            2.<a target="_blank" href="https://idiotwu.me/css3-progress-ring/.">https://idiotwu.me/css3-progress-ring/.</a>
+        </p>
+	</div>
+</div>
+</body>
+<script>
+var num = 0;
+var n = 0;
+var head = document.getElementById('head');
+head.onmousemove = function(evt) {
+    // this.onmousemove = function(evt) {
+    	var head = document.getElementById('head');
+        var e = evt || window.evt;
+        var x = e.pageX - 25;
+        var y = e.pageY - 25;
+        var oDiv = document.createElement('div');
+        n = parseInt(num / 20);
+        oDiv.classList.add('star');
+        oDiv.style.cssText = "top: " + y + "px;left:" + x + "px;";
+        head.appendChild(oDiv);
+        num++;
+        if (num >= 400) {
+            num = 0;
+        }
+        move(oDiv, {
+            width: 0,
+            height: 0,
+            top: y - 100
+        },
+        // 3s后消失
+        3000,
+        function() {
+            this.parentNode.removeChild(this);
+        });
+    }
+    this.onmouseup = function() {
+        this.onmousemove = null;
+        this.onmouseup = null;
+    // }
+}
+
+function move(obj, mJson, time, fn) {
+    var startTime = new Date();
+    var startVal = {};
+    for (var key in mJson) {
+        startVal[key] = getStyle(obj, key);
+    }
+    var timer = setInterval(function() {
+        var nowTime = new Date();
+        var prop = (nowTime - startTime) / time;
+        if (prop >= 1) {
+            prop = 1;
+            clearInterval(timer);
+            fn && fn.call(obj);
+        }
+        for (var key in mJson) {
+            obj.style[key] = startVal[key] + prop * (mJson[key] - startVal[key]) + 'px';
+        }
+    },
+    13)
+}
+
+function getStyle(obj, attr) {
+    if (attr == 'width') {
+        return obj.clientWidth;
+    } else if (attr == 'height') {
+        return obj.clientHeight;
+    } else if (attr == 'left') {
+        return obj.offsetLeft;
+    } else if (attr == 'top') {
+        return obj.offsetTop;
+    } else {
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+}
+</script>
+</html>
