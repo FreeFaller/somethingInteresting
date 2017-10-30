@@ -193,7 +193,8 @@ ul.pxs_thumbnails li.selected img{
 .font{color: #ffffff;font-size: 16px;font-weight: bold;transform:rotateY(60deg);}
 
 /*第三屏*/
-.history-contain{width: 50%;height: 70%;background-color: #fff;opacity: 0.3;margin-left: 25%;border-radius: 10px;position: relative;left: -120%;}
-.history-contain ul li p{font-size: 40px;}
+.history-contain{width: 50%;height: 70%;background-color: #fff;opacity: 0.4;margin-left: 25%;border-radius: 10px;position: relative;left: -120%;}
+.history-contain p{font-size: 50px;color: #BC5C05;}
+.history-contain ul li p{font-size: 40px;text-align: left;margin-left: 20px;}
 .history-contain ul li p a{color: #000;}
 

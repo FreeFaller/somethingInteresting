@@ -17,8 +17,8 @@
         .main img{margin-bottom: 20px;/*width: 70%;*/}
         /*.main .full-img{width: 100%;}*/
         .main .full{width: 70%;}
-		.title{font-size: 24px;border-width: bold;margin-bottom: 30px;font-weight: 500;}
-        .info{font-size: 18px;color: gray;font-size: 16px;}
+		.main .title{font-size: 24px;border-width: bold;margin-bottom: 30px;font-weight: 500;}
+        .main .info{font-size: 18px;color: gray;font-size: 16px;}
 		.star {
 			width:30px;
 			height:30px;
@@ -34,7 +34,7 @@
         }
         td.linenos { background-color: #f0f0f0; padding-right: 10px; }
         span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
-        pre { line-height: 125%; }
+        pre { line-height: 125%; overflow: auto;margin-bottom: 20px;}
         body .hll { background-color: #ffffcc }
         body  { background: #f8f8f8; }
         body .c { color: #408080; font-style: italic } /* Comment */
@@ -123,30 +123,269 @@
         <img class="full-img" src="img/triangle-1.png">
         <p>首先来实现一个菜单的切换响应，demo中为了动态的改变二级菜单的内容，我使用了template.js模板。当然，我们也可以通过拼接html来实现同样的效果。</p>
         <p>基本结构如下：</p>
+    <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;main&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;menu1&quot;</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;menu1&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+            <span style="color: #008000; font-weight: bold">&lt;ul&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type1&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>女装/内衣<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type2&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>腕表/珠宝饰品/眼镜<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type3&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>化妆品/个人护理<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type4&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>图书音像<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type5&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>零食/进口食品/茶酒<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type6&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>生鲜水果<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+                <span style="color: #008000; font-weight: bold">&lt;li</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;type7&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;p&gt;</span>家具建材<span style="color: #008000; font-weight: bold">&lt;/p&gt;&lt;/li&gt;</span>
+            <span style="color: #008000; font-weight: bold">&lt;/ul&gt;</span>  
+        <span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+        <span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;content&quot;</span> <span style="color: #7D9029">class=</span><span style="color: #BA2121">&quot;menu2&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/div&gt;</span> 
+    <span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+    </pre></div>
+
         <p>二级菜单的切换事件：</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">var</span> html <span style="color: #666666">=</span> template(<span style="color: #BA2121">&#39;test&#39;</span>, data1); 
+    <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&#39;content&#39;</span>).innerHTML <span style="color: #666666">=</span> html; 
+
+    <span style="color: #408080; font-style: italic">//切换menu2</span>
+    <span style="color: #008000; font-weight: bold">function</span> change(data) {
+        <span style="color: #008000; font-weight: bold">var</span> new_html <span style="color: #666666">=</span> template(<span style="color: #BA2121">&#39;test&#39;</span>,data);
+        <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&#39;content&#39;</span>).innerHTML <span style="color: #666666">=</span> new_html; 
+    }
+    <span style="color: #008000; font-weight: bold">function</span> changeMenu2(row){
+        <span style="color: #008000; font-weight: bold">var</span> id <span style="color: #666666">=</span> row.id;
+        <span style="color: #008000; font-weight: bold">switch</span> (id) {
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type1&#39;</span><span style="color: #666666">:</span>
+                change(data1);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type2&#39;</span><span style="color: #666666">:</span>
+                change(data2);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type3&#39;</span><span style="color: #666666">:</span>
+                change(data3);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type4&#39;</span><span style="color: #666666">:</span>
+                change(data4);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type5&#39;</span><span style="color: #666666">:</span>
+                change(data5);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type6&#39;</span><span style="color: #666666">:</span>
+                change(data6);
+                <span style="color: #008000; font-weight: bold">break</span>;
+            <span style="color: #008000; font-weight: bold">case</span>  <span style="color: #BA2121">&#39;type7&#39;</span><span style="color: #666666">:</span>
+                change(data7);
+                <span style="color: #008000; font-weight: bold">break</span>;
+        }
+    }
+    </pre></div>
         <p>基本结构准备就绪以后，我们来给菜单添加选择性延时切换效果。<br>
         我们先定义一些往后可能会用到的<span class="bold">变量和事件钩子</span>：</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">var</span> menu1 <span style="color: #666666">=</span> <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&#39;menu1&#39;</span>),
+        activeRow <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>, <span style="color: #408080; font-style: italic">//一级菜单当前焦点行</span>
+        mouseLocs <span style="color: #666666">=</span> [], <span style="color: #408080; font-style: italic">//鼠标位置存储栈</span>
+        lastDelayLoc <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>, <span style="color: #408080; font-style: italic">//存储最近有延时的坐标</span>
+        timeoutId <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>, <span style="color: #408080; font-style: italic">//存储定时器</span>
+        options <span style="color: #666666">=</span> {
+        rowSelector<span style="color: #666666">:</span><span style="color: #BA2121">&quot;&gt; li&quot;</span>,
+        submenuSelector<span style="color: #666666">:</span> <span style="color: #BA2121">&quot;*&quot;</span>,
+        submenuDirection<span style="color: #666666">:</span><span style="color: #BA2121">&quot;right&quot;</span>,
+        tolerance<span style="color: #666666">:75</span>,
+        enter<span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">function</span>(){},      <span style="color: #408080; font-style: italic">//进入一级菜单触发</span>
+        exit<span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">function</span>(){},       <span style="color: #408080; font-style: italic">//离开一级菜单触发</span>
+        activate<span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">function</span>(){},   <span style="color: #408080; font-style: italic">//一级菜单当前行被激活时触发</span>
+        deactivate<span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">function</span>(){}, <span style="color: #408080; font-style: italic">//一级菜单取消激活时触发</span>
+        exitMenu<span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">function</span>(){}    <span style="color: #408080; font-style: italic">//离开菜单时触发</span>
+    };
+</pre></div>
         <p>接下来我们需要<span class="bold">记录鼠标在文档中的移动坐标</span></p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">function</span> mouseMoveDocument(e){
+        mouseLocs.push({x<span style="color: #666666">:</span>e.pageX,y<span style="color: #666666">:</span>e.pageY});
+        <span style="color: #008000; font-weight: bold">if</span> (mouseLocs.length <span style="color: #666666">&gt;</span> <span style="color: #666666">3</span>) {
+            mouseLocs.shift();
+        }
+    }
+</pre></div>
         <p>此方法在鼠标移动时候触发，我们只记录最近的三个鼠标的位置坐标。当坐标个数超过三个时，将最先存储的坐标删除。</p>
         <p>然后我们来编写延时函数。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">function</span> possiblyActivate(row){
+        <span style="color: #008000; font-weight: bold">var</span> delay <span style="color: #666666">=</span> activationDelay();
+        <span style="color: #408080; font-style: italic">//有延时情况时，将匿名函数加入到执行队列，延迟delay毫秒后执行。</span>
+        <span style="color: #408080; font-style: italic">//而在匿名函数中调用possiblyActivate，会每隔一段时间调用一次，直到不延时</span>
+        <span style="color: #008000; font-weight: bold">if</span> (delay) {
+            timeoutId <span style="color: #666666">=</span> setTimeout(<span style="color: #008000; font-weight: bold">function</span>(){
+                possiblyActivate(row);
+            },delay);
+        }<span style="color: #008000; font-weight: bold">else</span>{
+            <span style="color: #408080; font-style: italic">//不延时，直接激活新的一行</span>
+            activate(row);
+        }
+    }
+        </pre></div>
         <p>activationDelay方法返回了延时的毫秒数，当有延时情况时，将匿名函数加入到执行队列，延迟delay毫秒后执行。而在匿名函数中调用possiblyActivate，会每隔一段时间调用一次，直到不延时。如果不延时，则直接激活新的一行。</p>
         <p>其中possiblyActivate通过在匿名函数中调用自身，使得划动过程中的delay可以无限续杯。保证了用户在阴影区域划动过程中，即使鼠标划得很慢，只要不停止划动超过指定的delay时长，就不会切换二级菜单。这样一来移动距离便不再重要，不论用户从一级菜单的左侧A点还是右侧B点，只要在阴影区域内划动，就不用担心划动的时间过长会导致二级菜单切换。<span class="bold">（不怕慢，就怕站）</span></p>
         <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-2.png">
         <p>activationDelay方法是整个插件中最重要的，就是它来<span class="bold">决定二级菜单是延迟还是立即响应</span>，我们分段来看，首先获取到一级菜单的四个顶点坐标，为了取得这些坐标值，我们先定义两个方法：</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #408080; font-style: italic">//获取元素相对左坐标</span>
+    <span style="color: #008000; font-weight: bold">function</span> getElementViewLeft(element){
+　　　　<span style="color: #008000; font-weight: bold">var</span> actualLeft <span style="color: #666666">=</span> element.offsetLeft;
+　　　　<span style="color: #008000; font-weight: bold">var</span> current <span style="color: #666666">=</span> element.offsetParent;
+　　　　<span style="color: #008000; font-weight: bold">while</span> (current <span style="color: #666666">!==</span> <span style="color: #008000; font-weight: bold">null</span>){
+　　　　　　actualLeft <span style="color: #666666">+=</span> current.offsetLeft;
+　　　　　　current <span style="color: #666666">=</span> current.offsetParent;
+　　　　}
+　　　　<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">document</span>.compatMode <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;BackCompat&quot;</span>){
+　　　　　　<span style="color: #008000; font-weight: bold">var</span> elementScrollLeft<span style="color: #666666">=</span><span style="color: #008000">document</span>.body.scrollLeft;
+　　　　} <span style="color: #008000; font-weight: bold">else</span> {
+　　　　　　<span style="color: #008000; font-weight: bold">var</span> elementScrollLeft<span style="color: #666666">=</span><span style="color: #008000">document</span>.documentElement.scrollLeft; 
+　　　　}
+　　　　<span style="color: #008000; font-weight: bold">return</span> actualLeft<span style="color: #666666">-</span>elementScrollLeft;
+　　}
+    <span style="color: #408080; font-style: italic">//获取元素相对上坐标</span>
+　　<span style="color: #008000; font-weight: bold">function</span> getElementViewTop(element){
+　　　　<span style="color: #008000; font-weight: bold">var</span> actualTop <span style="color: #666666">=</span> element.offsetTop;
+　　　　<span style="color: #008000; font-weight: bold">var</span> current <span style="color: #666666">=</span> element.offsetParent;
+　　　　<span style="color: #008000; font-weight: bold">while</span> (current <span style="color: #666666">!==</span> <span style="color: #008000; font-weight: bold">null</span>){
+　　　　　　actualTop <span style="color: #666666">+=</span> current. offsetTop;
+　　　　　　current <span style="color: #666666">=</span> current.offsetParent;
+　　　　}
+　　　　 <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">document</span>.compatMode <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;BackCompat&quot;</span>){
+　　　　　　<span style="color: #008000; font-weight: bold">var</span> elementScrollTop<span style="color: #666666">=</span><span style="color: #008000">document</span>.body.scrollTop;
+　　　　} <span style="color: #008000; font-weight: bold">else</span> {
+　　　　　　<span style="color: #008000; font-weight: bold">var</span> elementScrollTop<span style="color: #666666">=</span><span style="color: #008000">document</span>.documentElement.scrollTop; 
+　　　　}
+　　　　<span style="color: #008000; font-weight: bold">return</span> actualTop<span style="color: #666666">-</span>elementScrollTop;
+　　}
+</pre></div>
         <p>这两个方法分别能够获取到元素的相对上边距和左边距。可以看到我们通过查询指定元素的祖先节点并叠加间距直到到达最外层，再减去可能存在的滚动条距离，从而得到相对与浏览器的边距。这两个值合在一起就是一个<span class="bold">元素的左上角相对于浏览器坐标位置<span class="bold">。</p>
         <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-3.jpg">
         <p>有了这两个方法，我们便能将<span class="bold">一级菜单的四个顶点坐标</span>获取到。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">var</span> offsetLeft <span style="color: #666666">=</span> getElementViewLeft(menu1);
+    <span style="color: #008000; font-weight: bold">var</span> offsetTop <span style="color: #666666">=</span> getElementViewTop(menu1);
+    <span style="color: #008000; font-weight: bold">var</span> upperLeft <span style="color: #666666">=</span> {
+            x<span style="color: #666666">:</span>offsetLeft,
+            y<span style="color: #666666">:</span>offsetTop <span style="color: #666666">-</span> options.tolerance
+        },
+        upperRight <span style="color: #666666">=</span> {
+            x<span style="color: #666666">:</span>offsetLeft <span style="color: #666666">+</span> menu1.offsetWidth,
+            y<span style="color: #666666">:</span>upperLeft.y
+        },
+        lowerLeft <span style="color: #666666">=</span> {
+            x<span style="color: #666666">:</span>offsetLeft,
+            y<span style="color: #666666">:</span>offsetTop <span style="color: #666666">+</span> menu1.offsetHeight <span style="color: #666666">+</span> options.tolerance
+        },
+        lowerRight <span style="color: #666666">=</span> {
+            x<span style="color: #666666">:</span>offsetLeft <span style="color: #666666">+</span> menu1.offsetWidth,
+            y<span style="color: #666666">:</span>lowerLeft.y
+        }
+        </pre></div>
         <p>其中tolerance的存在是我们对用户操作的<span class="bold">包容程度</span>，一图胜千言。当没有tolerance或tolerance为0的时候，想要延时切换，鼠标的活动范围只有深灰色的区域，一旦超出则二级菜单立即切换。当我们加入了tolerance并给它赋一个大于0的值，鼠标的活动范围便被扩大到了黄色的区域。这样能够给用户的操作提供更大的包容。</p>
         <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-4.jpg">
         <p>获取到一级菜单的顶点之后，我们结合鼠标的位置来进行判断。<br>
         如果没有被激活的行，说明鼠标初次进入菜单，立即执行二级菜单切换。<br>
         当鼠标从一级菜单中移出时，清空定时器和焦点行，立即执行。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">function</span> activationDelay(){
+        <span style="color: #408080; font-style: italic">//当前没有被激活的行时，直接执行</span>
+        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>activeRow) {<span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;}
+        
+        loc <span style="color: #666666">=</span> mouseLocs[mouseLocs.length <span style="color: #666666">-</span> <span style="color: #666666">1</span>], <span style="color: #408080; font-style: italic">//当前坐标</span>
+        prevLoc <span style="color: #666666">=</span> mouseLocs[<span style="color: #666666">0</span>];   <span style="color: #408080; font-style: italic">//前一个坐标</span>
+
+        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>loc) {<span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;}
+
+        <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>prevLoc) {prevLoc <span style="color: #666666">=</span> loc;}
+
+        <span style="color: #408080; font-style: italic">//移除菜单区域</span>
+        <span style="color: #008000; font-weight: bold">if</span> (prevLoc.x <span style="color: #666666">&lt;</span> offsetLeft <span style="color: #666666">||</span> prevLoc.x <span style="color: #666666">&gt;</span> lowerRight.x <span style="color: #666666">||</span> 
+            prevLoc.y <span style="color: #666666">&lt;</span> offsetTop <span style="color: #666666">||</span> prevLoc.y <span style="color: #666666">&gt;</span> lowerRight.y) {
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+        }
+        <span style="color: #408080; font-style: italic">//鼠标在一级菜单相邻行缓慢切换时</span>
+        <span style="color: #008000; font-weight: bold">if</span> (lastDelayLoc <span style="color: #666666">&amp;&amp;</span> loc.x <span style="color: #666666">==</span> lastDelayLoc.x <span style="color: #666666">&amp;&amp;</span> loc.y <span style="color: #666666">==</span> lastDelayLoc.y) {
+            <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span> ;
+        }
+        lastDelayLoc <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>;
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span> ;
+    }
+        </pre></div>
         <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-5.jpg">
         <p>图中记录了当鼠标从左往右移动过程中的两个位置，可以看出鼠标是在延时区域内移动的，相应的延时区域也从黄色部分变为绿色部分。我们整体去看延时区域，可以发现，延时区域内的点都符合的特点：<span class="bolder">角A大于角a，角B大于角b。</span></p>
         <p>基于这个特点，我们便能<span class="bold">对用户的操作进行区分</span>。我们会实时记录用户的鼠标位置在一个数组中，里面存储着鼠标的当前坐标和上一个点的坐标。这两个坐标分别和之前获取到的一级菜单的顶点形成夹角（这里我们只需要用到一级菜单的右上角和右下角两个顶点，当二级菜单在一级菜单左侧时才需用到左上角和左下角的顶点）。只要当前的坐标形成的夹角A，B分别大于上一个坐标形成的夹角a，b，我们就能断定鼠标的移动是在延时区域内的，并让二级菜单延时切换。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #008000; font-weight: bold">var</span> decreasingCorner <span style="color: #666666">=</span> upperRight, <span style="color: #408080; font-style: italic">//右上角</span>
+        increasingCorner <span style="color: #666666">=</span> lowerRight; <span style="color: #408080; font-style: italic">//右下角</span>
+
+    <span style="color: #008000; font-weight: bold">var</span> decreasingSlope <span style="color: #666666">=</span> slope(loc,decreasingCorner),
+        increasingSlope <span style="color: #666666">=</span> slope(loc,increasingCorner),
+        prevDecreasingSlope <span style="color: #666666">=</span> slope(prevLoc,decreasingCorner),
+        prevIncreasingSlope <span style="color: #666666">=</span> slope(prevLoc,increasingCorner);
+    <span style="color: #008000; font-weight: bold">if</span>(decreasingSlope <span style="color: #666666">&lt;</span> prevDecreasingSlope <span style="color: #666666">&amp;&amp;</span> increasingSlope <span style="color: #666666">&gt;</span> prevIncreasingSlope){
+        lastDelayLoc <span style="color: #666666">=</span> loc;   <span style="color: #408080; font-style: italic">//记录延迟坐标</span>
+        <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">300</span>;          <span style="color: #408080; font-style: italic">//返回延迟毫秒数</span>
+    } 
+    <span style="color: #008000; font-weight: bold">function</span> slope(a,b){
+        <span style="color: #008000; font-weight: bold">return</span>(b.y <span style="color: #666666">-</span> a.y)<span style="color: #666666">/</span>(b.x <span style="color: #666666">-</span> a.x);
+    }
+        </pre></div>
         <p>有一点要注意的是，这里是通过比较夹角的tan值来确定大小的。我们会发现在浏览器的坐标位置中计算出的decreasingSlope 和 prevDecreasingSlope 是负值，因为decreasingCorner是在右上角，y值最小。我们只需要改变一下比较符号：decreasingSlope < prevDecreasingSlope 说明 角A > 角a。increasingCorner是右下角，所以计算出来的两个tan值都是正值，不需要变比较符号：increasingSlope > prevIncreasingSlope 说明 角B > 角b。</p>
         <img src="http://ouawl2p42.bkt.clouddn.com/tan.jpg">
         <p>最后我们再对一些鼠标操作进行定义和事件注册。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">
+    <span style="color: #408080; font-style: italic">//鼠标离开的善后工作</span>
+    <span style="color: #008000; font-weight: bold">function</span> mouseLeaveMenu(){
+        <span style="color: #008000; font-weight: bold">if</span> (timeoutId) {
+            <span style="color: #408080; font-style: italic">//清除定时器</span>
+            clearTimeout(timeoutId);
+        }
+        <span style="color: #008000; font-weight: bold">if</span> (options.exitMenu(<span style="color: #008000; font-weight: bold">this</span>)) {
+            <span style="color: #008000; font-weight: bold">if</span> (activeRow) {
+                options.deactivate(activeRow); <span style="color: #408080; font-style: italic">//触发取消激活事件</span>
+            }
+            activeRow <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">null</span>; <span style="color: #408080; font-style: italic">//当前焦点行清空</span>
+        }
+    }
+    <span style="color: #408080; font-style: italic">//鼠标进入一级菜单新的行</span>
+    <span style="color: #008000; font-weight: bold">function</span> mouseenterRow(e){
+        <span style="color: #408080; font-style: italic">//清理之前的定时器，因为possiblyActivate(this)中会设置定时器</span>
+        <span style="color: #008000; font-weight: bold">if</span> (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        <span style="color: #408080; font-style: italic">//触发鼠标进入事件</span>
+        options.enter(<span style="color: #008000; font-weight: bold">this</span>);
+        possiblyActivate(<span style="color: #008000; font-weight: bold">this</span>);
+    }
+    <span style="color: #408080; font-style: italic">//鼠标离开当前行</span>
+    <span style="color: #008000; font-weight: bold">function</span> mouseLeaveRow(){
+        <span style="color: #408080; font-style: italic">//触发鼠标离开事件</span>
+        options.exit(<span style="color: #008000; font-weight: bold">this</span>);
+    }
+    <span style="color: #408080; font-style: italic">//处于当前行时激活事件</span>
+    <span style="color: #008000; font-weight: bold">function</span> activate(row){
+        <span style="color: #008000; font-weight: bold">if</span> (row <span style="color: #666666">==</span> activeRow) {<span style="color: #008000; font-weight: bold">return</span>} <span style="color: #408080; font-style: italic">//当前行就是activeRow存的值</span>
+        
+        <span style="color: #408080; font-style: italic">//如果activeRow之前有值</span>
+        <span style="color: #008000; font-weight: bold">if</span> (activeRow) {
+            options.deactivate(activeRow);
+        }
+        <span style="color: #408080; font-style: italic">//激活当前行，将当前行存储到activeRow变量中</span>
+        changeMenu2(row);
+        options.activate(row);
+        activeRow <span style="color: #666666">=</span> row;
+    }
+    <span style="color: #408080; font-style: italic">//鼠标移动事件绑定</span>
+    (<span style="color: #008000; font-weight: bold">function</span>(){
+        <span style="color: #008000">document</span>.addEventListener(<span style="color: #BA2121">&#39;mousemove&#39;</span>,mouseMoveDocument,<span style="color: #008000; font-weight: bold">false</span>);
+        menu1.addEventListener(<span style="color: #BA2121">&#39;mouseleave&#39;</span>,mouseLeaveMenu);
+        <span style="color: #008000; font-weight: bold">var</span> list <span style="color: #666666">=</span> menu1.getElementsByTagName(<span style="color: #BA2121">&#39;li&#39;</span>);
+        <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #008000; font-weight: bold">var</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> list.length; i<span style="color: #666666">++</span>) {
+            list[i].addEventListener(<span style="color: #BA2121">&#39;mouseenter&#39;</span>,mouseenterRow);
+            list[i].addEventListener(<span style="color: #BA2121">&#39;mouseleave&#39;</span>,mouseLeaveRow);
+        }
+        </pre></div>
         <p>至此，我们就完成了对菜单延时三角的制作。在看到那篇文章之前，我甚至没考虑过还有这种操作。后来发现原来亚马逊、天猫一直就已经这么做了。其实它完全不是黑科技，原理也非常简单，可以理解成是开发者对用户无微不至的关怀，一切面向用户体验。这也确实给我提了个醒，前端开发并不能止步于满足需求，还要多从细节为用户着想，<span class="bold">做个有温度的开发</span>。</p>
         <p>前端萌新，在此做学习记录和分享，欢迎各位拍砖赐教。</p>
     </div>
