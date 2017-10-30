@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin:0;padding: 0;}
+		.head{width: 100%;height: 40vh;overflow: hidden;}
+		.head img{width: 100%;height: 100%;/*cursor: url(cursor.png),auto;*/}
+		.body{width: 100%;}
+		.main{width: 70%;margin-left: 15%;background-color: #e1f7fa;padding: 30px;box-sizing: border-box;/*cursor: url(cursor.png),auto;*/}
+        .main p{margin-bottom: 20px;color:#41414C;line-height: 28px;}
+        .main a{text-decoration:none;}
+        .main .bold{color: #000;font-size: 18px;font-weight: 500;}
+        .main .bolder{font-size: 18px;font-weight: 500;color: red;}
+        .main img{margin-bottom: 20px;/*width: 70%;*/}
+        /*.main .full-img{width: 100%;}*/
+        .main .full{width: 70%;}
+		.title{font-size: 24px;border-width: bold;margin-bottom: 30px;font-weight: 500;}
+        .info{font-size: 18px;color: gray;font-size: 16px;}
+		.star {
+			width:30px;
+			height:30px;
+			position:fixed;
+			background-size:100%;
+			background-image:url(http://ouawl2p42.bkt.clouddn.com/star.png)
+		}
+        @media screen and (max-width: 768px){
+            .main{width: 100%;padding: 30px 20px;margin-left: 0}
+            .head{width: 100%;height: 20vh;}
+            .main .full{width: 100%;}
+            .main .full-img{width: 100%;}
+        }
+        td.linenos { background-color: #f0f0f0; padding-right: 10px; }
+        span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
+        pre { line-height: 125%; }
+        body .hll { background-color: #ffffcc }
+        body  { background: #f8f8f8; }
+        body .c { color: #408080; font-style: italic } /* Comment */
+        body .err { border: 1px solid #FF0000 } /* Error */
+        body .k { color: #008000; font-weight: bold } /* Keyword */
+        body .o { color: #666666 } /* Operator */
+        body .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+        body .cp { color: #BC7A00 } /* Comment.Preproc */
+        body .c1 { color: #408080; font-style: italic } /* Comment.Single */
+        body .cs { color: #408080; font-style: italic } /* Comment.Special */
+        body .gd { color: #A00000 } /* Generic.Deleted */
+        body .ge { font-style: italic } /* Generic.Emph */
+        body .gr { color: #FF0000 } /* Generic.Error */
+        body .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+        body .gi { color: #00A000 } /* Generic.Inserted */
+        body .go { color: #888888 } /* Generic.Output */
+        body .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+        body .gs { font-weight: bold } /* Generic.Strong */
+        body .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+        body .gt { color: #0044DD } /* Generic.Traceback */
+        body .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+        body .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+        body .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+        body .kp { color: #008000 } /* Keyword.Pseudo */
+        body .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+        body .kt { color: #B00040 } /* Keyword.Type */
+        body .m { color: #666666 } /* Literal.Number */
+        body .s { color: #BA2121 } /* Literal.String */
+        body .na { color: #7D9029 } /* Name.Attribute */
+        body .nb { color: #008000 } /* Name.Builtin */
+        body .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+        body .no { color: #880000 } /* Name.Constant */
+        body .nd { color: #AA22FF } /* Name.Decorator */
+        body .ni { color: #999999; font-weight: bold } /* Name.Entity */
+        body .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+        body .nf { color: #0000FF } /* Name.Function */
+        body .nl { color: #A0A000 } /* Name.Label */
+        body .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+        body .nt { color: #008000; font-weight: bold } /* Name.Tag */
+        body .nv { color: #19177C } /* Name.Variable */
+        body .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+        body .w { color: #bbbbbb } /* Text.Whitespace */
+        body .mf { color: #666666 } /* Literal.Number.Float */
+        body .mh { color: #666666 } /* Literal.Number.Hex */
+        body .mi { color: #666666 } /* Literal.Number.Integer */
+        body .mo { color: #666666 } /* Literal.Number.Oct */
+        body .sb { color: #BA2121 } /* Literal.String.Backtick */
+        body .sc { color: #BA2121 } /* Literal.String.Char */
+        body .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+        body .s2 { color: #BA2121 } /* Literal.String.Double */
+        body .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+        body .sh { color: #BA2121 } /* Literal.String.Heredoc */
+        body .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+        body .sx { color: #008000 } /* Literal.String.Other */
+        body .sr { color: #BB6688 } /* Literal.String.Regex */
+        body .s1 { color: #BA2121 } /* Literal.String.Single */
+        body .ss { color: #19177C } /* Literal.String.Symbol */
+        body .bp { color: #008000 } /* Name.Builtin.Pseudo */
+        body .vc { color: #19177C } /* Name.Variable.Class */
+        body .vg { color: #19177C } /* Name.Variable.Global */
+        body .vi { color: #19177C } /* Name.Variable.Instance */
+        body .il { color: #666666 } /* Literal.Number.Integer.Long */
+	</style>
+</head>
+<body>
+<div class="head" id="head">
+	<img src="http://ouawl2p42.bkt.clouddn.com/star2.jpg">
+</div>
+<div class="body">
+	<div class="main">
+		<p class="title">探索菜单延时三角</p>
+        <p class="info">作者：FreeFaller | 2017-08-07</p>
+		<p>前几天在看到了一篇亚马逊左侧菜单延迟z三角，觉得很有意思，就自己照葫芦画瓢写了个demo。</p>
+        <p>不知常逛天猫的小伙伴有没有注意过商品导航栏的一个细节：当鼠标在一级菜单垂直上下划动时，右侧的二级菜单几乎是瞬间完成切换。但是当我们的鼠标斜着滑向二级菜单时，虽然途中经过了一级菜单别的行，但是二级菜单却并没有发生切换。</p>
+        <img class="full" src="http://ouawl2p42.bkt.clouddn.com/tmall.gif">
+        <p><span class="bold">意义：</span></p>
+        <p>这种效果的好处在于，我们的鼠标能够更顺利得从一级菜单移动到二级菜单，而中途不会使得二级菜单轻易地改变。尤其在一级菜单较长的时候，很容易在划动过程中误触到其他行，如果二级菜单瞬间就被切换了，对用户的选择体验不是非常友好。我们通过对鼠标划动加以控制，使得在垂直切换一级菜单时，二级菜单及时响应。从一级菜单划向二级菜单时，二级菜单添加延时切换以<span class="bold">包容用户的误操作。</span></p>
+        <p>这里我们探索一下菜单延时切换的实现：</p>
+        <img class="full" src="http://ouawl2p42.bkt.clouddn.com/demonstrate.gif">
+        <p>简单来说，这个效果是通过规定一个<span class="bold">延时区域</span>来对用户的鼠标事件进行区分。<br>
+        用户在一级菜单上的鼠标移动操作主要分为两种：<br>
+        1、在一级菜单里上下划动，浏览相应的二级菜单。<br>
+        2、从一级菜单划向二级菜单，对二级菜单进行选择。<br>
+        <span class="bolder">对于第一种情况，二级菜单及时相应。对于第二种情况，二级菜单延时响应。</span><br>
+        我们对这两种操作的区分是通过鼠标划动的角度来判断的。当用户的鼠标在下图深灰色阴影区域里划动时，判断为第二种情况，延时响应。</p>
+        <img class="full-img" src="img/triangle-1.png">
+        <p>首先来实现一个菜单的切换响应，demo中为了动态的改变二级菜单的内容，我使用了template.js模板。当然，我们也可以通过拼接html来实现同样的效果。</p>
+        <p>基本结构如下：</p>
+        <p>二级菜单的切换事件：</p>
+        <p>基本结构准备就绪以后，我们来给菜单添加选择性延时切换效果。<br>
+        我们先定义一些往后可能会用到的<span class="bold">变量和事件钩子</span>：</p>
+        <p>接下来我们需要<span class="bold">记录鼠标在文档中的移动坐标</span></p>
+        <p>此方法在鼠标移动时候触发，我们只记录最近的三个鼠标的位置坐标。当坐标个数超过三个时，将最先存储的坐标删除。</p>
+        <p>然后我们来编写延时函数。</p>
+        <p>activationDelay方法返回了延时的毫秒数，当有延时情况时，将匿名函数加入到执行队列，延迟delay毫秒后执行。而在匿名函数中调用possiblyActivate，会每隔一段时间调用一次，直到不延时。如果不延时，则直接激活新的一行。</p>
+        <p>其中possiblyActivate通过在匿名函数中调用自身，使得划动过程中的delay可以无限续杯。保证了用户在阴影区域划动过程中，即使鼠标划得很慢，只要不停止划动超过指定的delay时长，就不会切换二级菜单。这样一来移动距离便不再重要，不论用户从一级菜单的左侧A点还是右侧B点，只要在阴影区域内划动，就不用担心划动的时间过长会导致二级菜单切换。<span class="bold">（不怕慢，就怕站）</span></p>
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-2.png">
+        <p>activationDelay方法是整个插件中最重要的，就是它来<span class="bold">决定二级菜单是延迟还是立即响应</span>，我们分段来看，首先获取到一级菜单的四个顶点坐标，为了取得这些坐标值，我们先定义两个方法：</p>
+        <p>这两个方法分别能够获取到元素的相对上边距和左边距。可以看到我们通过查询指定元素的祖先节点并叠加间距直到到达最外层，再减去可能存在的滚动条距离，从而得到相对与浏览器的边距。这两个值合在一起就是一个<span class="bold">元素的左上角相对于浏览器坐标位置<span class="bold">。</p>
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-3.jpg">
+        <p>有了这两个方法，我们便能将<span class="bold">一级菜单的四个顶点坐标</span>获取到。</p>
+        <p>其中tolerance的存在是我们对用户操作的<span class="bold">包容程度</span>，一图胜千言。当没有tolerance或tolerance为0的时候，想要延时切换，鼠标的活动范围只有深灰色的区域，一旦超出则二级菜单立即切换。当我们加入了tolerance并给它赋一个大于0的值，鼠标的活动范围便被扩大到了黄色的区域。这样能够给用户的操作提供更大的包容。</p>
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-4.jpg">
+        <p>获取到一级菜单的顶点之后，我们结合鼠标的位置来进行判断。<br>
+        如果没有被激活的行，说明鼠标初次进入菜单，立即执行二级菜单切换。<br>
+        当鼠标从一级菜单中移出时，清空定时器和焦点行，立即执行。</p>
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/triangle-5.jpg">
+        <p>图中记录了当鼠标从左往右移动过程中的两个位置，可以看出鼠标是在延时区域内移动的，相应的延时区域也从黄色部分变为绿色部分。我们整体去看延时区域，可以发现，延时区域内的点都符合的特点：<span class="bolder">角A大于角a，角B大于角b。</span></p>
+        <p>基于这个特点，我们便能<span class="bold">对用户的操作进行区分</span>。我们会实时记录用户的鼠标位置在一个数组中，里面存储着鼠标的当前坐标和上一个点的坐标。这两个坐标分别和之前获取到的一级菜单的顶点形成夹角（这里我们只需要用到一级菜单的右上角和右下角两个顶点，当二级菜单在一级菜单左侧时才需用到左上角和左下角的顶点）。只要当前的坐标形成的夹角A，B分别大于上一个坐标形成的夹角a，b，我们就能断定鼠标的移动是在延时区域内的，并让二级菜单延时切换。</p>
+        <p>有一点要注意的是，这里是通过比较夹角的tan值来确定大小的。我们会发现在浏览器的坐标位置中计算出的decreasingSlope 和 prevDecreasingSlope 是负值，因为decreasingCorner是在右上角，y值最小。我们只需要改变一下比较符号：decreasingSlope < prevDecreasingSlope 说明 角A > 角a。increasingCorner是右下角，所以计算出来的两个tan值都是正值，不需要变比较符号：increasingSlope > prevIncreasingSlope 说明 角B > 角b。</p>
+        <img src="http://ouawl2p42.bkt.clouddn.com/tan.jpg">
+        <p>最后我们再对一些鼠标操作进行定义和事件注册。</p>
+        <p>至此，我们就完成了对菜单延时三角的制作。在看到那篇文章之前，我甚至没考虑过还有这种操作。后来发现原来亚马逊、天猫一直就已经这么做了。其实它完全不是黑科技，原理也非常简单，可以理解成是开发者对用户无微不至的关怀，一切面向用户体验。这也确实给我提了个醒，前端开发并不能止步于满足需求，还要多从细节为用户着想，<span class="bold">做个有温度的开发</span>。</p>
+        <p>前端萌新，在此做学习记录和分享，欢迎各位拍砖赐教。</p>
+    </div>
+</div>
+</body>
+<script>
+var num = 0;
+var n = 0;
+var head = document.getElementById('head');
+head.onmousemove = function(evt) {
+    // this.onmousemove = function(evt) {
+    	var head = document.getElementById('head');
+        var e = evt || window.evt;
+        var x = e.pageX - 25;
+        var y = e.pageY - 25;
+        var oDiv = document.createElement('div');
+        n = parseInt(num / 20);
+        oDiv.classList.add('star');
+        oDiv.style.cssText = "top: " + y + "px;left:" + x + "px;";
+        head.appendChild(oDiv);
+        num++;
+        if (num >= 400) {
+            num = 0;
+        }
+        move(oDiv, {
+            width: 0,
+            height: 0,
+            top: y - 100
+        },
+        // 3s后消失
+        3000,
+        function() {
+            this.parentNode.removeChild(this);
+        });
+    }
+    this.onmouseup = function() {
+        this.onmousemove = null;
+        this.onmouseup = null;
+    // }
+}
+
+function move(obj, mJson, time, fn) {
+    var startTime = new Date();
+    var startVal = {};
+    for (var key in mJson) {
+        startVal[key] = getStyle(obj, key);
+    }
+    var timer = setInterval(function() {
+        var nowTime = new Date();
+        var prop = (nowTime - startTime) / time;
+        if (prop >= 1) {
+            prop = 1;
+            clearInterval(timer);
+            fn && fn.call(obj);
+        }
+        for (var key in mJson) {
+            obj.style[key] = startVal[key] + prop * (mJson[key] - startVal[key]) + 'px';
+        }
+    },
+    13)
+}
+
+function getStyle(obj, attr) {
+    if (attr == 'width') {
+        return obj.clientWidth;
+    } else if (attr == 'height') {
+        return obj.clientHeight;
+    } else if (attr == 'left') {
+        return obj.offsetLeft;
+    } else if (attr == 'top') {
+        return obj.offsetTop;
+    } else {
+        return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+    }
+}
+</script>
+</html>

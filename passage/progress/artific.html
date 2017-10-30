@@ -10,9 +10,10 @@
 		.head img{width: 100%;height: 100%;/*cursor: url(cursor.png),auto;*/}
 		.body{width: 100%;}
 		.main{width: 70%;margin-left: 15%;background-color: #e1f7fa;padding: 30px;box-sizing: border-box;/*cursor: url(cursor.png),auto;*/}
-        .main p{margin-bottom: 20px;}
+        .main p{margin-bottom: 20px;color:#41414C;line-height: 28px;}
         .main a{text-decoration:none;}
         .main img{margin-bottom: 20px;}
+        /*.main .full-img{width: 100%;}*/
 		.title{font-size: 24px;border-width: bold;margin-bottom: 30px;font-weight: 500;}
         .info{font-size: 18px;color: gray;font-size: 16px;}
 		.star {
@@ -25,6 +26,7 @@
         @media screen and (max-width: 768px){
             .main{width: 100%;padding: 30px 20px;margin-left: 0}
             .head{width: 100%;height: 20vh;}
+            .main .full-img{width: 100%;}
         }
         td.linenos { background-color: #f0f0f0; padding-right: 10px; }
         span.lineno { background-color: #f0f0f0; padding: 0 5px 0 5px; }
@@ -92,7 +94,6 @@
         body .vi { color: #19177C } /* Name.Variable.Instance */
         body .il { color: #666666 } /* Literal.Number.Integer.Long */
 	</style>
-<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
 </head>
 <body>
 <div class="head" id="head">
@@ -113,16 +114,16 @@
         <p>CSS中能够实现这种神奇功能的方法是”clip“。clip能制造一块隐形斗篷，使原本在这个区域内的部分消失，并使得接下来进入这个区域内的圆也隐藏。</p>
         <img src="http://ouawl2p42.bkt.clouddn.com/4.jpg">
         <p>于是，最初的效果便是这样：</p>
-        <img src="http://ouawl2p42.bkt.clouddn.com/5.jpg">
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/5.jpg">
         <p>在这里我们把第一个圆的右侧作为隐藏区域，第二个圆的左侧作为隐藏区域。接下来我们要做的事情便是通过旋转，让最底下的圆逐渐显现出来，实现进度的效果。</p>
         <p>首先，我们转动中间的半圆，使其顺时针偏过一定角度。这样一来，这个半圆会有一部分进入左侧隐藏区域，同时将上面偏出一部分空白区域，由于第一个圆的右侧是透明区域，所以在偏出的部分我们能够直接看到最底下那个蓝色环，效果如图：</p>
-        <img src="http://ouawl2p42.bkt.clouddn.com/6.jpg">
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/6.jpg">
         <p>之后，第二个圆环继续偏转，当完全进入隐藏区域部分时刚好便是50%的效果</p>
-        <img src="http://ouawl2p42.bkt.clouddn.com/7.jpg">
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/7.jpg">
         <p>至此，革命大业顺利进行了一半，接下来可能不需要说，大家也能想到该如何让剩下的蓝色圆环显示出来了吧，那就是顺时针转动最上层的圆环。</p>
-        <img src="http://ouawl2p42.bkt.clouddn.com/8.jpg">
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/8.jpg">
         <p>最后，一鼓作气，我们把顶层圆环旋转180°，圆环完全进入隐藏区域，底部的蓝色环至此也完全显示了出来。</p>
-        <img src="http://ouawl2p42.bkt.clouddn.com/9.jpg">
+        <img class="full-img" src="http://ouawl2p42.bkt.clouddn.com/9.jpg">
         <p>进度条的显示原理至此已经基本明了，接下来便是将中间的数字与转动的度数对应起来。这里要注意的是把数字乘以3.6求得圆环应偏转的度数（道理很简单，进度是0—100，度数是0—360）。</p>
         <p>Talk is cheap，此处附上圆环代码（为简化代码，使用了jquery）</p>
         <p>html&CSS:</p>
